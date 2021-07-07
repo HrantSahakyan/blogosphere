@@ -5,8 +5,9 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="logo-part">
+                            <a href="/">
                             <img src="{{asset('images/logo_with_name_blogosphere.png')}}" class="w-50 logo-footer" >
-                            <p>Yerevan, Armenia</p>
+                            </a><p>Yerevan, Armenia</p>
                             <p>Write your blog in Blogosphere!</p>
                         </div>
                     </div>

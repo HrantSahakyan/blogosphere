@@ -10729,3 +10729,20 @@ a:hover {
     margin: 5px;
     border-radius: 50%;
 }
+@media screen and (max-width: 767px){
+    footer{
+        text-align: center;
+    }
+    footer h6:after{
+        background: transparent;
+    }
+}
+.nav-item a:hover {
+    color: #e1e7fd !important;
+}
+.btn-footer:hover {
+    color: #bac2e0 !important;
+}
+.theme a:hover{
+    color: #786fac !important;
+}

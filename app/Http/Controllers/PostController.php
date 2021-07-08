@@ -52,8 +52,9 @@ class PostController extends Controller
         $post->save();
         $post->slug = Str::slug($post->title) . '-' . $post->id;
         $post->save();
-        $message = 'Your article added successfully.';
-        return redirect('/profile')->with('message-success',$message);
+        return view('add_image');
+
+//        return redirect('/add/image');
     }
 
     public function edit($slug)

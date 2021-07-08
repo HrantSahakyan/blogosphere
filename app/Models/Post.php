@@ -12,4 +12,9 @@ class Post extends Model
     {
         return $this->belongsTo('App\User', 'author_id');
     }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
 }

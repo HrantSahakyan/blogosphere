@@ -7,11 +7,11 @@
             <h1 class="text-center">My page</h1>
             <div class="profile ">
                 <div class="prof-pic">
-                    <img src="{{asset('/storage/profile_pictures/'.\Illuminate\Support\Facades\Auth::user()->image) }}" alt="prof pic" width="200" height="200">
+                    <img src="/storage/profile_pictures/{{Auth::user()->image}}" alt="prof pic" width="200" height="200">
                 </div>
                 <div class="prof-info">
-                    <h4>{{\Illuminate\Support\Facades\Auth::user()->name .' '.\Illuminate\Support\Facades\Auth::user()->lastname}}</h4>
-                    <h4>In Blogosphere from: {{\Illuminate\Support\Facades\Auth::user()->created_at}}</h4>
+                    <h4>{{Auth::user()->name .' '.Auth::user()->lastname}}</h4>
+                    <h4>In Blogosphere from: {{Auth::user()->created_at}}</h4>
                     <h4>Created articles: {{$posts->total()}}</h4>
                     <form action="{{route('home-upload')}}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -40,20 +40,20 @@
         <div class="container">
             <h1 class="text-center">Read articles</h1>
             <div class="blogs">
-                @foreach( $posts->items() as $item )
+                @foreach( $posts->items() as $post )
                     <div class="blog">
-                        <a href="article/{{$item->slug}}"><h3 class="text-center">{{$item->title}}</h3></a>
-                        <p>{{$item->body}}</p>
-                        <img src="images/{{$item->theme}}.png">
+                        <a href="article/{{$post->slug}}"><h3 class="text-center">{{$post->title}}</h3></a>
+                        <p>{{$post->body}}</p>
+                        <img src="/storage/uploads/{{ $post->images->first()->filenames}}">
                         <address class="text-right font-italic">
-                            Author:<img src="{{asset('/storage/profile_pictures/'.\Illuminate\Support\Facades\Auth::user()->image) }}" class="profile_picture_small" alt="prof pic" width=30" height="30" >
-                            {{\Illuminate\Support\Facades\DB::table('users')->where('id',$item->author_id)->get()->first()->name . ' ' . \Illuminate\Support\Facades\DB::table('users')->where('id',$item->author_id)->get()->first()->lastname}} <br>
-                            Last edited at: {{$item->updated_at}} <br>
-                            Theme: <a href="read/{{$item->theme}}">{{$item->theme}}</a>
+                            Author:<img src="/storage/profile_pictures/{{Auth::user()->image }}" class="profile_picture_small" alt="prof pic" width=30" height="30" >
+                            {{DB::table('users')->where('id',$post->author_id)->get()->first()->name . ' ' . DB::table('users')->where('id',$post->author_id)->get()->first()->lastname}} <br>
+                            Last edited at: {{$post->updated_at}} <br>
+                            Theme: <a href="read/{{$post->theme}}">{{$post->theme}}</a>
                         </address>
                         <div class="delete-edit float-right">
-                            <a class="edit" href="edit/{{$item->slug}}"><i class="fa fa-2x fa-pencil"></i></a>
-                            <a class="delete" href="edit/delete/{{$item->slug}}"><i class="fa fa-2x fa-trash"></i></a>
+                            <a class="edit" href="edit/{{$post->slug}}"><i class="fa fa-2x fa-pencil"></i></a>
+                            <a class="delete" href="edit/delete/{{$post->slug}}"><i class="fa fa-2x fa-trash"></i></a>
                         </div>
                     </div>
                 @endforeach
@@ -63,6 +63,5 @@
     <div class="d-flex justify-content-center pagination">
         {{ with($posts)->links() }}
     </div>
-{{--    {{dd(with($message))}}--}}
 @endsection
 

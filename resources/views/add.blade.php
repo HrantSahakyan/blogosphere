@@ -15,7 +15,7 @@
                     <div class="card-header">{{ __('Add blog') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="/post">
+                        <form method="POST" action="/add/image">
 {{--                            action="{{ route('login') }}"--}}
                             @csrf
 

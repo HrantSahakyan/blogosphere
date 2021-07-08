@@ -24,6 +24,10 @@ class User extends Authenticatable
         'image',
     ];
 
+    //TODO What is appends in laravel eloquent model
+    protected $appends = [
+        'full_name'
+    ];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -45,5 +49,11 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany('App\Posts', 'author_id');
+    }
+
+    //TODO What is appends in laravel attributes and accessors
+    public function getFullNameAttribute(): string
+    {
+        return $this->name.' '.$this->lastname;
     }
 }

@@ -8,11 +8,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 class PageController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Show the application dashboard.
      *

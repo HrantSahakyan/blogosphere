@@ -13,11 +13,11 @@
                     @foreach($post->images as $index => $image)
                                 @if($index == 0)
                                     <div class="carousel-item active">
-                                        <img  src="/storage/uploads/{{$image->filenames}}" alt="First slide">
+                                        <img  src="/storage/uploads/{{$image->filenames}}" alt="{{$image->filenames}}">
                                     </div>
                                 @else
                                     <div class="carousel-item">
-                                        <img  src="/storage/uploads/{{$image->filenames}}" alt="First slide">
+                                        <img  src="/storage/uploads/{{$image->filenames}}" alt="{{$image->filenames}}">
                                     </div>
                                 @endif
                             @endforeach
@@ -35,7 +35,7 @@
                     </div>
             </div>
             <address class="text-right font-italic">
-                Author:<img src="/storage/profile_pictures/{{DB::table('users')->where('id',$post->author_id)->get()->first()->image}}" class="profile_picture_small" alt="prof pic" width=30" height="30" > {{DB::table('users')->where('id',$post->author_id)->get()->first()->name . ' ' . \Illuminate\Support\Facades\DB::table('users')->where('id',$post->author_id)->get()->first()->lastname}} <br>
+                Author:<img src="/storage/profile_pictures/{{DB::table('users')->where('id',$post->author_id)->first()->image}}" class="profile_picture_small" alt="prof pic" width=30" height="30" > {{ $post->author->full_name }} <br>
                 Last edited at: {{$post->updated_at}} <br>
                 Theme: <a href="../read/{{$post->theme}}">{{$post->theme}}</a>
             </address>

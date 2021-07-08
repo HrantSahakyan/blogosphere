@@ -13,7 +13,7 @@ class PostRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return auth()->check();
     }
 
     /**
@@ -26,6 +26,7 @@ class PostRequest extends FormRequest
         return [
             'title' => 'required|max:255',
             'body' => 'required|max:10000',
+            'theme' => 'required'
         ];
     }
 }

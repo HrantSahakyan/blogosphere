@@ -4,34 +4,36 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Image;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'title',
         'slug',
         'author_id',
         'body',
-        'active',
         'theme'
     ];
 
-
+    protected $dates = ['deleted_at'];
     //TODO what is the relations in laravel
     public function author()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function images()
+    public function postImages()
     {
-        return $this->hasMany(Image::class);
+        return $this->hasMany(Image::class,'imageable_id')->whereImageable_type('post');
     }
 
-    public function scopeActive($query)
-    {
-        return $query->whereActive(1);
-    }
+//    public function scopeActive($query)
+//    {
+//        return $query->whereActive(1);
+//    }
+
 }

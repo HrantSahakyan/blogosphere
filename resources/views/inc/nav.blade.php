@@ -48,7 +48,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    <img src="/storage/profile_pictures/{{Auth::user()->image }}" alt="prof pic" width=30" height="30" style="border-radius: 50%">
+                    <img src="/storage/uploads/@if(Auth::user()->getProfilepictureFilenameAttribute === null){{'profile.jpg'}}@else{{Auth::user()->getProfilepictureFilenameAttribute->filename}} @endif" alt="prof pic" width=30" height="30" style="border-radius: 50%">
                     {{ Auth::user()->name . ' ' . Auth::user()->lastname}}
                 </a>
 

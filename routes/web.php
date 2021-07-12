@@ -39,9 +39,9 @@ Route::middleware(['auth'])->group(function (){
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::post('/home/upload', [App\Http\Controllers\HomeController::class, 'upload'])->name('home-upload');
+Route::post('/home/upload', [App\Http\Controllers\ImageController::class, 'upload'])->name('home-upload');
 //Route::post('/post', [App\Http\Controllers\PostController::class, 'store'])->name('store');
-Route::post('/post/image', [App\Http\Controllers\ImageController::class, 'upload'])->name('upload');
+Route::post('/post/image', [App\Http\Controllers\ImageController::class, 'uploadPostImages'])->name('upload');
 Route::get('/post/random', [App\Http\Controllers\PostController::class, 'random'])->name('random');
 Route::get('/read', [App\Http\Controllers\PostController::class, 'index'])->name('read');
 Route::get('/read/{theme}', [App\Http\Controllers\PostController::class, 'theme'])->name('theme');

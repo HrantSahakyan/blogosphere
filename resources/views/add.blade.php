@@ -16,7 +16,6 @@
 
                     <div class="card-body">
                         <form method="POST" action="/add/image">
-{{--                            action="{{ route('login') }}"--}}
                             @csrf
 
                             <div class="form-group row">

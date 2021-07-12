@@ -20,7 +20,7 @@ class PageController extends Controller
     public function profile()
     {
         //fetch 6 posts from database which are active and latest
-        $posts = Post::where('active',1)->where('author_id',Auth::user()->id)->orderBy('updated_at','desc')->paginate(6);
-        return view('profile')->with('posts',$posts);
+        $posts = Post::whereAuthor_id(Auth::id())->orderBy('updated_at','desc')->paginate(6);
+        return view('profile',compact('posts'));
     }
 }

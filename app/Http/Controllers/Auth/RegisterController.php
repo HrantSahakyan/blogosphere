@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Image;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -65,13 +66,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $id = User::latest()->first()->id;
+        $id++;
+        Image::create([
+            'imageable_type' => 'user',
+            'imageable_id' => $id,
+            'filename' => 'profile.jpg',
+        ]);
         return User::create([
             'name' => $data['name'],
             'lastname' => $data['lastname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-
-//            'image' => Hash::make($data['password']),
         ]);
     }
 

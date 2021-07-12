@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use App\Models\Image;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -51,9 +51,27 @@ class User extends Authenticatable
         return $this->hasMany('App\Posts', 'author_id');
     }
 
+
     //TODO What is appends in laravel attributes and accessors
-    public function getFullNameAttribute(): string
+    public function getFullName(): string
     {
         return $this->name.' '.$this->lastname;
     }
+
+    public function getProfilepictureFilenameAttribute()
+    {
+        return $this->hasOne(Image::class, 'imageable_id', 'id')->whereImageable_type('user');
+    }
+//    public function userImage()
+//    {
+//        return $this->hasOne(Image::class, 'imageable_id', 'id')->whereImageable_type('user');
+////        dd($this->hasOne(Image::class,'imageable_id','id')->whereImageable_type('user')->filename);
+////        if($this->hasOne(Image::class,'imageable_id','id')->whereImageable_type('user') === null){
+////                dd(45);
+////            }
+////        else{
+////                dd(445455);
+////            }
+////        }
+//    }
 }

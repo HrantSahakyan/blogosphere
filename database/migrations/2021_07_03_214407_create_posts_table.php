@@ -20,8 +20,9 @@ class CreatePostsTable extends Migration
             $table->string('slug',255)->unique()->nullable();
             $table->string('theme','200');
             $table->string('author_id','255');
-            $table->boolean('active');
+//            $table->boolean('active')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -37,7 +37,7 @@ class PostController extends Controller
             ->first();
 
         $last_posts = Post::whereTheme($post->theme)
-            ->where('slug', '<>', $slug)
+            ->whereSlug('<>', $slug)
             ->orderBy('updated_at', 'desc')
             ->take(4)
             ->get();
@@ -87,8 +87,6 @@ class PostController extends Controller
     public function update($slug, PostRequest $request)
     {
         abort_if(!Post::whereSlug($slug)->exists(), 404);
-//        $id = Post::whereSlug($slug)->get()->first();
-        //TODO active inactive checkbox
         $new_slug = Str::slug($request->title);
         if($new_slug != $slug){
             if (Post::whereSlug($new_slug = Str::slug($new_slug))->exists()) {
@@ -96,7 +94,7 @@ class PostController extends Controller
             }
         }
         Post::whereSlug($slug)
-            ->where('author_id', Auth::id())
+            ->whereAuthor_id(Auth::id())
             ->update([
                 'title' => $request->title,
                 'body' => $request->body,
@@ -104,7 +102,7 @@ class PostController extends Controller
                 'theme' => $request->theme,
                 'updated_at' => date("Y-m-d H:i:s")
             ]);
-        return redirect('/profile')->with('message_success','Article edited succesfully!');
+        return redirect('/profile')->with('message_success','Article edited successfully!');
     }
 
     public function delete($slug)

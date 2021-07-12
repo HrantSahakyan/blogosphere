@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('title')My profile @endsection
-
 @section('section1')
     <section class="my-page mt-3">
         <div class="container">
@@ -9,9 +8,8 @@
                 <div class="prof-pic">
                     <img src="/storage/uploads/{{Auth::user()->getProfilepictureFilenameAttribute->filename}}" alt="prof pic" width="200" height="200">
                 </div>
-{{--                {{}}--}}
                 <div class="prof-info">
-                    <h4>{{Auth::user()->full_name}}</h4>
+                    <h4>{{Auth::user()->getFullName()}}</h4>
                     <h4>In Blogosphere from: {{Auth::user()->created_at}}</h4>
                     <h4>Created articles: {{$posts->total()}}</h4>
                     <form action="{{route('home-upload')}}" method="POST" enctype="multipart/form-data">
@@ -34,7 +32,6 @@
             </div>
         @endif
     </section>
-
 @endsection
 @section('section2')
     <section class="articles">
@@ -48,8 +45,7 @@
                         <img src="/storage/uploads/{{ $post->postImages->first()->filename}}">
                         <address class="text-right font-italic">
                             Author:
-{{--                            @if(Auth::user()->userImage === null){{'profile.png'}}@else{{dd(4444)}}@endif--}}
-                            <img src="/storage/uploads/@if(Auth::user()->getProfilepictureFilenameAttribute === null){{'profile.jpg'}}@else{{Auth::user()->getProfilepictureFilenameAttribute->filename}}@endif" class="profile_picture_small" alt="prof pic" width=30" height="30" >
+                            <img src="/storage/uploads/{{Auth::user()->getProfilepictureFilenameAttribute->filename}}" class="profile_picture_small" alt="prof pic" width=30" height="30" >
                             {{Auth::user()->getFullName()}} <br>
                             Last edited at: {{$post->updated_at}} <br>
                             Theme: <a href="read/{{$post->theme}}">{{$post->theme}}</a>

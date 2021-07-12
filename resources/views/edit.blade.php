@@ -13,16 +13,13 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Edit blog') }}</div>
-
                     <div class="card-body">
                         <form method="POST" action="/post/edit/{{$post->slug}}">
                             @csrf
                             <div class="form-group row">
                                 <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('New title') }}</label>
-
                                 <div class="col-md-6">
                                     <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{$post->title}}" required autocomplete="title" autofocus>
-
                                     @error('title')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -44,7 +41,6 @@
                             </div>
                             <div class="form-group row">
                                 <label for="theme" class="col-md-4 col-form-label text-md-right">{{ __('Theme') }}</label>
-
                                 <div class="col-md-6">
                                     <select id="theme" type="text" class="form-control @error('theme') is-invalid @enderror" name="theme" value="{{ old('theme') }}" required autocomplete="theme" autofocus>
                                         <option value="science">Science</option>
@@ -62,18 +58,6 @@
                                     @enderror
                                 </div>
                             </div>
-                            {{--                            <div class="form-group row">--}}
-                            {{--                                <label for="images" class="col-md-4 col-form-label text-md-right">{{ __('Add images') }}</label>--}}
-
-                            {{--                                <div class="col-md-6">--}}
-                            {{--                                    <input type="file" name="images[]" id="images" class="form-control @error('images') is-invalid @enderror" value="{{ old('images') }}" autocomplete="images" autofocus multiple>--}}
-                            {{--                                    @error('files')--}}
-                            {{--                                    <span class="invalid-feedback" role="alert">--}}
-                            {{--                                        <strong>{{ $message }}</strong>--}}
-                            {{--                                    </span>--}}
-                            {{--                                    @enderror--}}
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-primary">

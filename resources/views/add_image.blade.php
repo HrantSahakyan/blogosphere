@@ -13,14 +13,11 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Add images') }} <br> If you don't want add images, just click Add</div>
-
                     <div class="card-body">
                         <form method="POST" action="{{route('upload')}}" enctype="multipart/form-data" >
                             @csrf
-
                             <div class="form-group row">
                                 <label for="images" class="col-md-4 col-form-label text-md-right">{{ __('Add images') }}</label>
-
                                 <div class="col-md-6">
                                     <input type="file" name="images[]" id="images" class="form-control @error('images') is-invalid @enderror" value="{{ old('images') }}" autocomplete="images" autofocus multiple>
                                     @error('files')

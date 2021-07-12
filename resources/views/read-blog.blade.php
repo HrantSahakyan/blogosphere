@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('title')Read blog @endsection
-
 @section('section1')
     <section class="articles">
         <div class="container">
@@ -13,8 +12,7 @@
                     <img src="/storage/uploads/{{$post->postImages->first()->filename}}">
                     <address class="text-right font-italic">
                         Author:
-
-                        <img src="/storage/uploads/@if($post->author->getProfilepictureFilenameAttribute === null){{'profile.jpg'}}@else{{$post->author->getProfilepictureFilenameAttribute->filename}}@endif" class="profile_picture_small" alt="prof pic" width=30" height="30" >
+                        <img src="/storage/uploads/{{$post->author->getProfilepictureFilenameAttribute->filename}}" class="profile_picture_small" alt="prof pic" width=30" height="30" >
                         {{$post->author->getFullName()}} <br>
                         Last edited at: {{$post->updated_at}} <br>
                         Theme: <a href="../read/{{$post->theme}}">{{$post->theme}}</a>
@@ -30,4 +28,3 @@
             {{ $posts->links() }}
         </div>
 @endsection
-{{--{{dd(with($posts))}}--}}

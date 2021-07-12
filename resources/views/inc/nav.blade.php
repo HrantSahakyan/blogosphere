@@ -13,14 +13,7 @@
                 </button>
 
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <!-- Left Side Of Navbar -->
-{{--    <ul class="navbar-nav mr-auto">--}}
-
-{{--    </ul>--}}
-
-    <!-- Right Side Of Navbar -->
     <ul class="navbar-nav ml-auto">
-        <!-- Authentication Links -->
         <li class="nav-item active">
             <a class="nav-link  font-weight-bold text-white" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
@@ -48,8 +41,8 @@
             </li>
             <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    <img src="/storage/uploads/@if(Auth::user()->getProfilepictureFilenameAttribute === null){{'profile.jpg'}}@else{{Auth::user()->getProfilepictureFilenameAttribute->filename}} @endif" alt="prof pic" width=30" height="30" style="border-radius: 50%">
-                    {{ Auth::user()->name . ' ' . Auth::user()->lastname}}
+                    <img src="/storage/uploads/{{Auth::user()->getProfilepictureFilenameAttribute->filename}}" alt="prof pic" width=30" height="30" style="border-radius: 50%">
+                    {{ Auth::user()->getFullName()}}
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

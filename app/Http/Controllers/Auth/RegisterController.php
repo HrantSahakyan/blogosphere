@@ -66,8 +66,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $id = User::latest()->first()->id;
-        $id++;
+        try {
+            $id = User::latest()->first()->id;
+            $id++;
+        }catch (\Throwable $exception){
+            $id = 1;
+        }
         Image::create([
             'imageable_type' => 'user',
             'imageable_id' => $id,

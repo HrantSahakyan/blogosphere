@@ -37,7 +37,7 @@ class PostController extends Controller
             ->first();
 
         $last_posts = Post::whereTheme($post->theme)
-            ->whereSlug('<>', $slug)
+            ->where('slug','<>', $slug)
             ->orderBy('updated_at', 'desc')
             ->take(4)
             ->get();

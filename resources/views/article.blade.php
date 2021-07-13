@@ -49,7 +49,7 @@
         <div class="container">
             <h3 class="title-blue text-center">Read also</h3>
             <div class="read-also-articles">
-                @foreach($last_posts as $last_post)
+            @foreach($last_posts as $last_post)
                     <div class="read-also-article">
                         <a href="../article/{{$last_post->slug}}"><h3 class="text-center">{{$last_post->title}}</h3></a>
                         <p>{{$last_post->body}}</p>

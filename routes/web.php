@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function (){
     Route::post('/add/image', [App\Http\Controllers\PostController::class, 'store'])->name('add_image');
     Route::get('/edit/delete/{slug}', [App\Http\Controllers\PostController::class, 'delete'])->name('delete');
     Route::post('/post/edit/{slug}', [App\Http\Controllers\PostController::class, 'update'])->name('update');
+    Route::post('/post/comment/{slug}', [App\Http\Controllers\CommentController::class, 'store'])->name('add-comment');
     Route::get('/edit/{slug}', [App\Http\Controllers\PostController::class, 'edit'])->name('edit');
 });
 

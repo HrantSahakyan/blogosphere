@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\CommentRequest;
+use Illuminate\Support\Facades\Auth;
 class CommentController extends Controller
 {
     /**
@@ -33,9 +35,14 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($slug, CommentRequest $request)
     {
-        //
+        $id = Post::whereSlug($slug)->first()->id;
+        $data = $request->validated();
+        $data['post_id'] = $id;
+        $data['author_id'] = Auth::id();
+        Comment::create($data);
+        return redirect()->back();
     }
 
     /**

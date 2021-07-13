@@ -20,6 +20,7 @@ class Post extends Model
     ];
 
     protected $dates = ['deleted_at'];
+
     //TODO what is the relations in laravel
     public function author()
     {
@@ -28,12 +29,11 @@ class Post extends Model
 
     public function postImages()
     {
-        return $this->hasMany(Image::class,'imageable_id')->whereImageable_type('post');
+        return $this->hasMany(Image::class, 'imageable_id')->whereImageable_type('post');
     }
 
-//    public function scopeActive($query)
-//    {
-//        return $query->whereActive(1);
-//    }
-
+    public function postComments()
+    {
+        return $this->hasMany(Comment::class, 'post_id', 'id');
+    }
 }

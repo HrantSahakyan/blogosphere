@@ -10746,3 +10746,33 @@ a:hover {
 .theme a:hover{
     color: #786fac !important;
 }
+#comment{
+    width: 100%;
+    font-size: 15px;
+    padding: 15px;
+    border-radius: 10px;
+}
+.comments{
+    width: 100%;
+    float: left;
+    background: #f2fffc;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid blue;
+}
+.single-comment{
+    border-bottom: 1px solid blue;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+.article-single address{
+    background: #e0fff7;
+    display: block;
+    float: right;
+    padding: 10px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border: 1px solid blue;
+}

@@ -40,6 +40,33 @@
                 Last edited at: {{$post->updated_at}} <br>
                 Theme: <a href="../read/{{$post->theme}}">{{$post->theme}}</a>
             </address>
+            <div class="article-comments">
+                <div class="comments">
+                    @if(count($post->postComments) == 0)
+                        <p>Be first to add comment!</p>
+                    @endif
+                    @foreach($post->postComments as $comment)
+                        <div class="single-comment">
+                            <div class="user-author-info">
+                                <img src="/storage/uploads/{{$comment->author->getProfilepictureFilenameAttribute->filename}}" class="profile_picture_small" alt="prof pic" width=30" height="30" >
+                                <span>{{$comment->author->getFullName()}}, {{$comment->created_at}}</span>
+                            </div>
+                            <div class="single-comment-text">{{$comment->comment_text}}</div>
+                        </div>
+
+                    @endforeach
+                </div>
+                <form action="/post/comment/{{$post->slug}}" method="post">
+                    @csrf
+                    <textarea name="comment_text" id="comment" placeholder="Add comment" class=" @error('comment_text') is-invalid @enderror " rows="4"></textarea>
+                    @error('comment_text')
+                    <span class="invalid-feedback mt-2 mb-2" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                    <input type="submit" value="Comment" id="add-comment" name="add_comment">
+                </form>
+            </div>
         </div>
     </div>
 </section>
